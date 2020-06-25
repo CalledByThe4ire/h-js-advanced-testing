@@ -1,23 +1,21 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+tests/toHtmlList.test.js
+------------------------
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Протестируйте функцию, которая преобразует различные входные форматы в выходной HTML.
 
-# nodejs-package
+```
+// Поддерживаются yml/json/csv
+const html1 = await toHtmlList('/path/to/yaml/file');
+const html2 = await toHtmlList('/path/to/json/file');
+const html3 = await toHtmlList('/path/to/csv/file');
 
-[![Node CI](https://github.com/hexlet-boilerplates/nodejs-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/nodejs-package/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/maintainability)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/test_coverage)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/test_coverage)
-
-## Setup
-
-```sh
-$ make install
 ```
 
-## Run tests
+Каждый из входных файлов для этой функции содержит список элементов из которых формируется элемент `<ul>`. Входные данные и выходной HTML можно подсмотреть в фикстурах.
 
-```sh
-$ make test
-```
+Ваша задача, пропустить через эту функцию входные файлы и сравнить результат работы функции с ожидаемым значением находящимся в файле `__fixtures__/result.html`. Функция принимает на вход путь к файлу.
+
+### Подсказки
+
+-   [test.each](https://jestjs.io/docs/en/api#testeachtablename-fn-timeout)
+-   [.trim](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim) -- позволяет удалять концевые пробелы
