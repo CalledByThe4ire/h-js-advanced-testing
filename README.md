@@ -1,23 +1,33 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+tests/buildUser.test.js
+-----------------------
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Протестируйте функцию, которая генерирует случайного пользователя. Пользователь, в данном случае, это объект с тремя полями:
 
-# nodejs-package
+-   email
+-   firstName
+-   lastName
 
-[![Node CI](https://github.com/hexlet-boilerplates/nodejs-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/nodejs-package/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/maintainability)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/test_coverage)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/test_coverage)
+Для генерации данных используется библиотека [Faker.js](https://github.com/marak/Faker.js/)
 
-## Setup
+```
+console.log(buildUser());
+// {
+//   email: 'Zion.Reichel12@yahoo.com',
+//   firstName: 'Elizabeth',
+//   lastName: 'Zulauf',
+// }
 
-```sh
-$ make install
+// Если какой-то из параметров нужно задать точно, то его можно передать в функцию
+console.log(buildUser({ firstName: 'Petya' }));
+// {
+//   email: 'Zion.Reichel12@yahoo.com',
+//   firstName: 'Petya',
+//   lastName: 'Zulauf',
+// }
+
 ```
 
-## Run tests
+Вам нужно протестировать две ситуации:
 
-```sh
-$ make test
-```
+-   Что каждый вызов `buildUser` возвращает объект с другими данными.
+-   Что работает установка свойств через параметры.
