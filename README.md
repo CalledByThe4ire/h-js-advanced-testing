@@ -1,23 +1,27 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+tests/getFilesCount.test.js
+---------------------------
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Протестируйте функцию `getFilesCount()`, которая считает количество всех файлов в указанной директории и всех поддиректориях.
 
-# nodejs-package
+```
+const filesCount = getFilesCount('/path/to/directory');
 
-[![Node CI](https://github.com/hexlet-boilerplates/nodejs-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/nodejs-package/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/maintainability)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/test_coverage)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/test_coverage)
-
-## Setup
-
-```sh
-$ make install
 ```
 
-## Run tests
+У этой функции есть дополнительное поведение. Во время обхода файлов, она записывает информацию об этом (какие файлы были задействованы) в специальный файл, который называется журналом действий или логом.
 
-```sh
-$ make test
+Запись в файл является нежелательным побочным эффектом. Каждый запуск будет заполнять какой-то файл, который мы никак не используем. От него нужно избавится. Все что мы хотим -- чтобы функция считала количество файлов. Сделать это можно так. Для записи в файл, функция `getFileCount`, используют другую функцию, которую можно подменить:
+
 ```
+const = getFileCount(path, log = writeDataToFile) {
+  // Где-то внутри  во время работы
+  writeDataToFile(`file ${name} has been processed`);
+}
+
+```
+
+Для подмены нужно передать вторым параметром функцию-пустышку, которая не будет ничего делать. В таком случае ее вызов внутри `getFileCount()` хоть и отработает, но не породит побочного эффекта.
+
+### Подсказки
+
+-   Передайте этой функции путь до директории внутри *fixtures* и убедитесь в том что она правильно посчитала количество файлов внутри
