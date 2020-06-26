@@ -1,23 +1,21 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+tests/getUserMainLanguage.test.js
+---------------------------------
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Протестируйте функцию `getUserMainLanguage(username, client)`, которая определяет язык на котором пользователь создал больше всего репозиториев. Для реализации этой задачи, функция `getUserMainLanguage` выполняет запрос через *@octokit/rest*, который извлекает все репозитории указанного пользователя (по первому параметру *username*). Каждый репозиторий в этом списке, содержит указание основного языка репозитория. Эта информация используется для поиска того языка, которые используется чаще.
 
-# nodejs-package
+```
+// Запрос который выполняет функция getUserByUsername
+// Именно этот метод нужно будет подменить в фейковом клиенте
+const { data } = await client.repos.listForUser({ username });
+// data -- список репозиториев. У каждого репозитория может быть много полей
+// но нас интересует ровно одно -- language
+// Эти данные нужно подготовить в тестах для фейкового клиента
+console.log(data);
+// [{ language: 'php', ... }, { language: 'javascript', ... }, ...]
 
-[![Node CI](https://github.com/hexlet-boilerplates/nodejs-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/nodejs-package/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/maintainability)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/dfc50c2d88cd46d069c1/test_coverage)](https://codeclimate.com/github/hexlet-boilerplates/nodejs-package/test_coverage)
-
-## Setup
-
-```sh
-$ make install
 ```
 
-## Run tests
+support/OctokitFake.js
+----------------------
 
-```sh
-$ make test
-```
+Реализуйте фейковый клиент по такому же принципу как это было сделано в теории. Используйте этот клиент в тестах для подмены.
